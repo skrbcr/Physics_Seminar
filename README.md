@@ -17,7 +17,7 @@ Please clone this repository. If you don't have git tools, please download [this
 
 ## Usage
 1. Open downloaded `Physics_Seminar` folder.
-2. Write recipe file. `recipes/example.yaml` is an example of recipe files. You can also see [how to write recipe files](#how_to_write_recipe_files).
+2. Write recipe file. `recipes/example.yaml` is an example of recipe files. You can also see [how to write recipe files](#how-to-write-recipe-files).
 3. Run the python script:
 ```shell
 python3 picture.py your_recipe_file.yaml
