@@ -1,0 +1,20 @@
+data: ../acisf13177N003_evt2_t1.csv
+outname: result/linear/
+range: [[3500,4400],[3900,4700]]
+bin: 1
+cmap: gray
+band:
+  - energy: [0,800]
+  - energy: [800,1200]
+  - energy: [1200,1500]
+  - energy: [1500,1700]
+  - energy: [1700,2000]
+  - energy: [2000,2300]
+  - energy: [2300,2600]
+  - energy: [2600,2900]
+  - energy: [2900,3200]
+  - energy: [3200,4000]
+  - energy: [4000,6000]
+  - energy: [6000,7000]
+  - energy: [7000,10000]
+

@@ -1,0 +1,13 @@
+data: /path_to_your_data_file # データファイル
+outname: result/log/  # 出力名
+range: [[3500,4400],[3900,4700]]  # 画像範囲
+bin: 1  # 1ピクセルのサイズ
+log: 1  # log scale にするか（1: log; 0: linear） 
+cmap: binary  # cmap の指定
+band:   # バンドの指定（上から順に画像生成）
+  - energy: [1800,2000] # エネルギーバンド
+    cmin: 0  # 表示する最小カウント数（cmin 未満のカウント数のピクセルは空白）
+    cmax: 20 # 表示する最大カウント数（cmax を超えるカウント数のピクセルは空白）
+  - energy: [2300,2600]
+  - energy: [2600,2900]
+
