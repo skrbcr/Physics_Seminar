@@ -1,13 +1,13 @@
-data: /path_to_your_data_file # データファイル
-outname: result/log/  # 出力名
-range: [[3500,4400],[3900,4700]]  # 画像範囲
-bin: 1  # 1ピクセルのサイズ
-log: 1  # log scale にするか（1: log; 0: linear） 
-cmap: binary  # cmap の指定
-band:   # バンドの指定（上から順に画像生成）
-  - energy: [1800,2000] # エネルギーバンド
-    cmin: 0  # 表示する最小カウント数（cmin 未満のカウント数のピクセルは空白）
-    cmax: 20 # 表示する最大カウント数（cmax を超えるカウント数のピクセルは空白）
-  - energy: [2300,2600]
-  - energy: [2600,2900]
+data: /path_to_your_data_file # data file
+outname: result/log/  # output file name prefix
+range: [[3500,4400],[3900,4700]]  # range of images
+bin: 1  # size of one pixel
+log: 0  # set log scale (1: log; 0: linear) 
+cmap: binary  # specify cmap (see https://matplotlib.org/stable/tutorials/colors/colormaps.html)
+band:   # set band data
+  - energy: [1800,2000] # range of energy
+    cmin: 0  # min counts (pixel with counts less than cmin is not displayed)
+    cmax: 20 # max counts (pixel with counts more than cmax is not displayed)
+  - energy: [2300,2600] # you may not specify cmin and cmax
+  - energy: [2600,2900] # then, the program automatically sets options
 
