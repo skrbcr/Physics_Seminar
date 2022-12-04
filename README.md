@@ -32,10 +32,10 @@ python3 picture.py your_recipe_file.yaml
 **IMPORTANT**  
 In version 1, you have to make csv from fits. In version 2, however, you no longer have to do so. Just specify your original fits file in recipe files.
 
-Sample:  
+### Sample
 ![sample image](sample.png)
 
-## How to write recipe files
+### How to write recipe files
 Recipe files are written in YAML. You can create and edit YAML files with any text editor.
 
 Here is an example of recipe files:
