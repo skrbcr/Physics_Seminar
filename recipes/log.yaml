@@ -1,4 +1,4 @@
-data: ../acisf13177N003_evt2_t1.csv
+data: ../acisf13177N003_evt2.fits
 outname: result/log/  
 range: [[3500,4400],[3900,4700]]  
 bin: 1  

@@ -1,32 +1,31 @@
 import numpy as np
 import matplotlib as mpl
 import matplotlib.pyplot as plt
-import pandas as pd
+from astropy.io import fits
 import os
 import sys
 import yaml
 
 plt.style.use('default')
-plt.rcParams['font.family'] = 'Source Han Sans'
-plt.rcParams['font.size'] = 12
 
-def monochro(ene, x, y, enerange: list[float], cmin: float, cmax: float, outname: str, ranges: list[list[float]], bins: int, log: bool, cp: str) -> None:
+def monochro(arre: np.ndarray, arrx: np.ndarray, arry: np.ndarray, enerange: list[float], cmin: float, cmax: float, outname: str, ranges: list[list[float]], bins: int, log: bool, cp: str) -> None:
     binx: int = int((ranges[0][1] - ranges[0][0]) / bins)
     biny: int = int((ranges[1][1] - ranges[1][0]) / bins)
     if log:
         normlog = mpl.colors.LogNorm()
     else:
         normlog = None
-    x_ = []
-    y_ = []
-    for i in range(ene.size):
-        if ene[i] >= enerange[0] and ene[i] <= enerange[1]:
-            x_.append(x[i])
-            y_.append(y[i])
+    xs = []
+    ys = []
+    n = arre.size
+    for i in range(n):
+        if arre[i] >= enerange[0] and arre[i] <= enerange[1]:
+            xs.append(arrx[i])
+            ys.append(arry[i])
     # グラフ作成
     fig, ax = plt.subplots()
     ax.set_aspect('equal')
-    hi, xe, ye, img = ax.hist2d(x_, y_, bins=[binx,biny], range=ranges, norm=normlog, cmap=cp, cmin=cmin, cmax=cmax)
+    hi, xe, ye, img = ax.hist2d(xs, ys, bins=[binx,biny], range=ranges, norm=normlog, cmap=cp, cmin=cmin, cmax=cmax)
     plt.colorbar(img)
     strFile = outname + 'ene_' + str(enerange[0]) + '_' + str(enerange[1]) + '.png'
     fig.savefig(strFile, dpi=200)
@@ -35,9 +34,9 @@ def monochro(ene, x, y, enerange: list[float], cmin: float, cmax: float, outname
 
 def makeImage(data, cfg) -> None:
     # data の展開
-    x = data['x']
-    y = data['y']
-    ene = data['energy']
+    arrx = np.array(data.x, float)
+    arry = np.array(data.y, float)
+    arre = np.array(data.energy, float)
     # cfg の展開
     try:
         outname: str = cfg['outname']
@@ -84,7 +83,7 @@ def makeImage(data, cfg) -> None:
             cmax = cfg['band'][i]['cmax']
         except:
             cmax = None
-        monochro(ene, x, y, enerange, cmin, cmax, outname, rg, bins, normlog, cp)
+        monochro(arre, arrx, arry, enerange, cmin, cmax, outname, rg, bins, normlog, cp)
 
 def main() -> None:
     args = sys.argv
@@ -101,9 +100,16 @@ def main() -> None:
         print(e, file=sys.stderr)
         sys.exit(1)
     try:
-        data = pd.read_csv(str(cfg['data']))
+        hdul = fits.open(cfg['data'])
     except Exception as e:
-        print('Error: cannot open CSV file')
+        print('Error: cannot open fits file')
+        print(e, file=sys.stderr)
+        sys.exit(1)
+    try:
+        data = hdul['EVENTS'].data
+        hdul.close()
+    except:
+        print('Error: cannot find events data. please notify the author of this script about this error.')
         print(e, file=sys.stderr)
         sys.exit(1)
     try:

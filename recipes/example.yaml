@@ -1,5 +1,5 @@
-data: /path_to_your_data_file # data file
-outname: result/log/  # output file name prefix
+data: /path_to_your_fits_file # data file
+outname: result/example/  # output file name prefix
 range: [[3500,4400],[3900,4700]]  # range of images
 bin: 1  # size of one pixel
 log: 0  # set log scale (1: log; 0: linear) 
