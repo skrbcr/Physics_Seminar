@@ -14,15 +14,15 @@ pip install astropy
 pip install pyyaml
 ```
 
-**IMPORTANT**
+**IMPORTANT**  
 In version 1, the script required pandas. In version 2, it requires astropy instead of pandas.
 
 ### 2. Download
-Please clone this repository. If you don't have git tools, please download from [Releases](https://github.com/skrbcr/Physics_Seminar/releases).
+Please download from [Releases](https://github.com/skrbcr/Physics_Seminar/releases).
 
 ## Usage
 1. Open downloaded `Physics_Seminar` folder.
-2. Write recipe file. `recipes/example.yaml` is an example of recipe files. You can also see [how to write recipe files](#how-to-write-recipe-files).
+2. Prepare your fits files and write recipe files. `recipes/example.yaml` is an example of recipe files. You can also see [how to write recipe files](#how-to-write-recipe-files).
 3. Run the python script:
 ```shell
 python3 picture.py your_recipe_file.yaml
